@@ -1,0 +1,61 @@
+html,body{
+    margin: -8px;
+    padding: 0px;
+    background-color: whitesmoke;
+    overflow-x: hidden;
+}
+.head {
+    text-align: center;
+    font-size: 1.6em;
+    color: #fff;
+    background: transparent linear-gradient(180deg, #074576 0%, #052F50 100%, #04233B 100%) 0% 0% no-repeat padding-box;
+    position: relative;
+    padding: 10px;
+}
+
+.new{
+    position: absolute;;
+    right: 1%;
+}
+.new1{
+    position: absolute;;
+    right: 120px;
+}
+
+p{
+    margin: 0px;
+    padding-left: 4px;
+}
+.saved-pass {
+    padding: 4px 10px 4px;
+    margin: 15px;
+    background: white 0% 0% no-repeat padding-box;
+    border: 1px solid gray;
+    display: flex;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px #00000029;
+    color: black;
+}
+
+.data{
+    flex-basis: 90%;
+    overflow: auto;
+    
+}
+
+.delete{
+    flex-basis: 5%;
+}
+
+.delete img{
+    width: 23px;
+    height: 23px;
+    position: relative;
+    top: 50px;
+    display: block;
+    margin: auto;
+}
+.container{
+    width: 60%;
+}
+
