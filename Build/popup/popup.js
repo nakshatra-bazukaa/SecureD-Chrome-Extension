@@ -130,4 +130,9 @@ $("#save").click(() => {
       });
   })
 });
+
+// Manage passwords
+$("#manage").click(() => {
+  chrome.tabs.create({ url: "../managePass/index.html" });
+});
   

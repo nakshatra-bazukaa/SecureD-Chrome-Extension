@@ -31,6 +31,21 @@ btn_dark.addEventListener("click", ()=> {
 
 let array_all_pass = Array.from(all_pass); 
 
+let alldata = []
+
+window.onload = function () {
+    chrome.storage.local.get(function (items) {
+        alldata = items.data;
+        console.log(alldata);
+        getPassword();
+        all_pass = document.querySelectorAll(".saved-pass"); 
+        array_all_pass = Array.from(all_pass); 
+        console.log(array_all_pass);
+        delete_element();
+        set_theme();
+    });
+}
+
 
 function set_theme(){
   let get_theme_value = localStorage.getItem("theme");
@@ -44,6 +59,25 @@ function set_theme(){
   {
       document.querySelector('#manage-style').href = "style.css";
     document.querySelector("#dark-mode").innerText = "Dark mode";
+  }
+}
+
+function getPassword() {
+  for (var i = 0; i < alldata.length; i++) {
+      const html = `
+      <div class="saved-pass">
+          <div class="data">
+              <p class="mtext4">URL : ${alldata[i].url}</p>
+              <p class="mtext5">USER : ${alldata[i].user}</p>
+              <p class="mtext1">TITLE : ${alldata[i].title}</p>
+              <p class="mtext2">DESCRIPTION : ${alldata[i].desc}</p>
+              <p class="mtext3">PASSWORD : ${alldata[i].pass}</p>
+          </div>
+          <div class = "vertical_line"></div>
+          <div class="delete tooltip1"><img src="delete.png" alt=""></div>
+      </div>
+      `
+      details.innerHTML += html;
   }
 }
 
