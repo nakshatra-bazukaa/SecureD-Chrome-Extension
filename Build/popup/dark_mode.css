@@ -3,42 +3,46 @@ body {
     padding: 0px;
     height: 500px;
     width: 320px;
-    background-color: rgb(238, 255, 249);
-}
-
-input {
-  text-align: left;
-  font: normal normal normal 25px/29px Arial;
-  letter-spacing: 0px;
-  color: #00000073;
-  opacity: 1;
-}
-
-.head{
+    background: #14141400 0% 0% no-repeat padding-box;
+  }
+  
+  *{
+    background: rgb(31, 30, 30);
+    color: white;
+  }
+  
+  input {
+    text-align: left;
+    font: normal normal normal 25px/29px Arial;
+    letter-spacing: 0px;
+    opacity: 1;
+  }
+  
+  
+  .head {
     text-align: center;
     font-size: 1.6em;
     color: #fff;
-    background-color: #074778;
-}
-.check{
-    color: #074778;
-}
-
-#custom{
+    background-color: #323435;
+  }
+  #custom {
     text-align: justify;
-}
-.opt{
+  }
+  
+  .opt {
     margin-left: 10px;
     margin-right: 10px;
-}
-
-.opt label{
+  }
+  
+  .opt label {
     margin-left: 5px;
-}
-
-
-/* slider css */
-.range {
+  }
+  .saved-pass{
+    height: 82.4px;
+  }
+  /* slider css */
+  
+  .range {
     width: 100%;
   }
   
@@ -64,7 +68,7 @@ input {
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background: #074778;
+    background: #ffffff;
     cursor: pointer;
   }
   
@@ -72,50 +76,47 @@ input {
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background: #074778;
+    background:#074778;
     cursor: pointer;
   }
-  #demo{
-      width: 20px;
-      height: 20px;
-      background-color: rgb(246, 253, 253);
-      font-size: 1.2em;
-      font-weight: bold;
+  
+  #demo {
+    width: 20px;
+    height: 20px;
+    background-color: rgb(0, 0, 0);
+    font-size: 1.2em;
+    font-weight: bold;
   }
-/* form decoration */
+  
+  /* form decoration */
+  
   .form-control {
     border-radius: 10px;
-    box-shadow: 5px 5px 5px #00000029;
+    box-shadow: 6px 6px 4px #00000029;
     border-left: 5px solid #074576;
+    background: white;
   }
-  
-  .btn-success:hover{
-    background-color: #197dc9;
-  }
-  
   .form-control1 {
-    background: #074576 0% 0% no-repeat padding-box !important; 
-    /* box-shadow: 6px 6px 8px #074576AB; */
-    box-shadow: 6px 6px 8px #074576;
-    border-color: #074576!important;
+    background:  #074576 0% 0% no-repeat padding-box !important;
+    box-shadow: 6px 6px 8px #074576AB !important;
     border-radius: 12px;
     opacity: 1;
   }
-  
   
   h6 {
     text-align: left;
     font: normal normal medium 20px/24px Montserrat;
     letter-spacing: 0px;
-    color: #074778;
+    color: #ffffff;
     opacity: 1;
   }
   
-  .colrtt{
-      color: #074576;;
+  .colrtt {
+    color: #ffffff;
   }
-
+  
   #show_error{
     display: none;
-    color: red;
+    color: white;
+    border: 1px solid red;
   }
