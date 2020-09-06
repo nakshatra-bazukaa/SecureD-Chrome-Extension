@@ -1,0 +1,37 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    height: 500px;
+    width: 320px;
+    background-color: rgb(238, 255, 249);
+}
+
+input {
+  text-align: left;
+  font: normal normal normal 25px/29px Arial;
+  letter-spacing: 0px;
+  color: #00000073;
+  opacity: 1;
+}
+
+.head{
+    text-align: center;
+    font-size: 1.6em;
+    color: #fff;
+    background-color: #074778;
+}
+.check{
+    color: #074778;
+}
+
+#custom{
+    text-align: justify;
+}
+.opt{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.opt label{
+    margin-left: 5px;
+}
