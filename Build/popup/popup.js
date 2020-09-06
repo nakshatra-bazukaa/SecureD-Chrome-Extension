@@ -79,4 +79,15 @@ copy.addEventListener('click', () => {
     document.execCommand("copy");
     copy.innerHTML = "COPIED";
   });
+
+// ------------------------------------------------------
+
+// To get the active tab and get its URL
+chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+  chrome.tabs.sendMessage(tabs[0].id, { action: "get_url" }, response => {
+    // console.log(response.url, response.user);
+    $("#url").val(response.url);
+    $("#user").val(response.user);
+  })
+})
   
