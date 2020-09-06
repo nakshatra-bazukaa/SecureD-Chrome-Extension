@@ -22,7 +22,7 @@ window.onload = function(){
 }
 
 
-check.addEventListener('click', e => {
+check.addEventListener('click', () => {
   custom.classList.toggle('d-none');
   if (custom.classList.contains('d-none')) {
     form.reset();
@@ -60,8 +60,9 @@ number.addEventListener('change', e => sessionStorage.setItem("zs", e.target.che
 special_char.addEventListener('change', e => sessionStorage.setItem("ts", e.target.checked));
 
 
-generate.addEventListener('click', () => {
+generate.addEventListener('click', (e) => {
   //check whether url or username are empty or not
+  e.preventDefault();
   if(($("#url").val() == "") || ($("#user").val() == ""))
   {
     hidden.classList.add('d-none');
@@ -108,9 +109,10 @@ function myfunction1() {
 // copy password
 
 
-copy.addEventListener('click', () => {
+copy.addEventListener('click', (e) => {
 
   /* Select the text field */
+  e.preventDefault();
   passGen.select();
   passGen.setSelectionRange(0, 99999); /*For mobile devices*/
 
@@ -131,7 +133,8 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
 })
 
 // To save a password
-$("#save").click(() => {
+$("#save").click(($e) => {
+  $e.preventDefault();
   save_password.innerHTML = "SAVED";
   let pwd_details = {
     url: $("#url").val(),
