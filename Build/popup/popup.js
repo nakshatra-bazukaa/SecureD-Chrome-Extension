@@ -104,4 +104,30 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     $("#user").val(response.user);
   })
 })
+
+// To save a password
+$("#save").click(() => {
+  save_password.innerHTML = "SAVED";
+  let pwd_details = {
+    url: $("#url").val(),
+    user: $("#user").val(),
+    title: $("#title").val(),
+    desc: $("#description").val(),
+    pass: $("#passGen").val()
+  };
+  chrome.runtime.sendMessage(
+    {
+      action: "save_pwd_details",
+      data: pwd_details
+    },
+    response => console.log(response));
+  chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+    chrome.tabs.sendMessage(tabs[0].id,
+      {
+        action: "set_user_data",
+        user: $("#user").val().trim(),
+        password: $("#passGen").val().trim()
+      });
+  })
+});
   
