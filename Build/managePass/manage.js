@@ -13,21 +13,39 @@ let delete_id = null;
 // toogle dark mode
 
 btn_dark.addEventListener("click", ()=> {
-    // If the current URL contains "ligh-theme.css"
-    if (theme.getAttribute("href") == "style.css") {
-      // ... then switch it to "dark-theme.css"
-      theme.href = "darkmode.css";
-      btn_dark.innerText = "Light mode";
-    // Otherwise...
-    } else {
-      // ... switch it to "light-theme.css"
-      theme.href = "style.css";
-      btn_dark.innerText = "Dark mode";
-    }
-  });
+  // If the current URL contains "ligh-theme.css"
+  if (theme.getAttribute("href") == "style.css") {
+    // ... then switch it to "dark-theme.css"
+    theme.href = "darkmode.css";
+    btn_dark.innerText = "Light mode";
+    localStorage.setItem("theme" , "dark");
+  // Otherwise...
+  } else {
+    // ... switch it to "light-theme.css"
+    theme.href = "style.css";
+    btn_dark.innerText = "Dark mode";
+    localStorage.setItem("theme" , "light");
+  }
+});
 
 
 let array_all_pass = Array.from(all_pass); 
+
+
+function set_theme(){
+  let get_theme_value = localStorage.getItem("theme");
+  console.log(get_theme_value);
+  if(get_theme_value == "null" || get_theme_value == "dark")
+  {
+      document.querySelector('#manage-style').href = "darkmode.css";
+    document.querySelector("#dark-mode").innerText = "Light mode";
+  }
+  else if(get_theme_value == "light")
+  {
+      document.querySelector('#manage-style').href = "style.css";
+    document.querySelector("#dark-mode").innerText = "Dark mode";
+  }
+}
 
 
 

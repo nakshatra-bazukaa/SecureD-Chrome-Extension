@@ -9,6 +9,18 @@ const save_password = document.querySelector("#save");
 const showError = document.querySelector("#show_error");
 let allpassword = [];
 
+window.onload = function(){
+  theme_value = localStorage.getItem("theme");
+  if(theme_value == "null" || theme_value == "dark")
+  {
+    document.querySelector('#manage-cssstyle').href = "dark_mode.css";
+  }
+  else if(theme_value == "light")
+  {
+    document.querySelector('#manage-cssstyle').href = "style.css";
+  }
+}
+
 
 check.addEventListener('click', e => {
     custom.classList.toggle('d-none');
