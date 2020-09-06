@@ -18,6 +18,21 @@ Everyone as all of us needs to store password and use them in future. UI is desi
 # Inspiration for this Project
 We decided to take part in a Hackathon by HackGujrat, a 30 hour long hackathon where we have to make something for the comminuity. The four of us did a lot of brainstorming and then came up with the idea of a "Password Generator" chrome extension. We came up with quite a few challenges and learnt a lot solving them. 
 
+# Installation Steps
+1. Clone this repository
+```bash
+git clone https://github.com/nakshatra-bazukaa/SecureD-Chrome-Extension.git
+```
+2. Open google chrome
+3. In adress bar just paste 👇👇
+```bash
+chrome://extensions
+```
+4. From top Right corner toggle Developer Mode
+5. From top Left corner select Load Unpacked
+6. Open Build folder from the cloned repository
+7. Your chrome extension will be up and running
+
 # Project Structure
 ```bash
 Build
