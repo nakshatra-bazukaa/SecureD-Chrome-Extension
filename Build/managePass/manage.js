@@ -13,20 +13,20 @@ let delete_id = null;
 // toogle dark mode
 
 btn_dark.addEventListener("click", ()=> {
-  // If the current URL contains "ligh-theme.css"
-  if (theme.getAttribute("href") == "style.css") {
-    // ... then switch it to "dark-theme.css"
-    theme.href = "darkmode.css";
-    btn_dark.innerText = "Light mode";
-    localStorage.setItem("theme" , "dark");
-  // Otherwise...
-  } else {
-    // ... switch it to "light-theme.css"
-    theme.href = "style.css";
-    btn_dark.innerText = "Dark mode";
-    localStorage.setItem("theme" , "light");
-  }
-});
+    // If the current URL contains "ligh-theme.css"
+    if (theme.getAttribute("href") == "style.css") {
+      // ... then switch it to "dark-theme.css"
+      theme.href = "darkmode.css";
+      btn_dark.innerText = "Light mode";
+      localStorage.setItem("theme" , "dark");
+    // Otherwise...
+    } else {
+      // ... switch it to "light-theme.css"
+      theme.href = "style.css";
+      btn_dark.innerText = "Dark mode";
+      localStorage.setItem("theme" , "light");
+    }
+  });
 
 
 let array_all_pass = Array.from(all_pass); 
@@ -46,81 +46,78 @@ window.onload = function () {
     });
 }
 
-
 function set_theme(){
-  let get_theme_value = localStorage.getItem("theme");
-  console.log(get_theme_value);
-  if(get_theme_value == "null" || get_theme_value == "dark")
-  {
-      document.querySelector('#manage-style').href = "darkmode.css";
-    document.querySelector("#dark-mode").innerText = "Light mode";
-  }
-  else if(get_theme_value == "light")
-  {
-      document.querySelector('#manage-style').href = "style.css";
-    document.querySelector("#dark-mode").innerText = "Dark mode";
-  }
+    let get_theme_value = localStorage.getItem("theme");
+    console.log(get_theme_value);
+    if(get_theme_value == "null" || get_theme_value == "dark")
+    {
+        document.querySelector('#manage-style').href = "darkmode.css";
+      document.querySelector("#dark-mode").innerText = "Light mode";
+    }
+    else if(get_theme_value == "light")
+    {
+        document.querySelector('#manage-style').href = "style.css";
+      document.querySelector("#dark-mode").innerText = "Dark mode";
+    }
 }
 
 function getPassword() {
-  for (var i = 0; i < alldata.length; i++) {
-      const html = `
-      <div class="saved-pass">
-          <div class="data">
-              <p class="mtext4">URL : ${alldata[i].url}</p>
-              <p class="mtext5">USER : ${alldata[i].user}</p>
-              <p class="mtext1">TITLE : ${alldata[i].title}</p>
-              <p class="mtext2">DESCRIPTION : ${alldata[i].desc}</p>
-              <p class="mtext3">PASSWORD : ${alldata[i].pass}</p>
-          </div>
-          <div class = "vertical_line"></div>
-          <div class="delete tooltip1"><img src="delete.png" alt=""></div>
-      </div>
-      `
-      details.innerHTML += html;
-  }
+    for (var i = 0; i < alldata.length; i++) {
+        const html = `
+        <div class="saved-pass">
+            <div class="data">
+                <p class="mtext4">URL : ${alldata[i].url}</p>
+                <p class="mtext5">USER : ${alldata[i].user}</p>
+                <p class="mtext1">TITLE : ${alldata[i].title}</p>
+                <p class="mtext2">DESCRIPTION : ${alldata[i].desc}</p>
+                <p class="mtext3">PASSWORD : ${alldata[i].pass}</p>
+            </div>
+            <div class = "vertical_line"></div>
+            <div class="delete tooltip1"><img src="delete.png" alt=""></div>
+        </div>
+        `
+        details.innerHTML += html;
+    }
 }
 
 Delete_All.addEventListener('click',()=>{
-  details.innerHTML = '';
-  chrome.storage.local.clear(obj => {
-      console.log("cleared");
-  })
-  chrome.storage.local.get(items => {
-      console.log(items);
-  })
+    details.innerHTML = '';
+    chrome.storage.local.clear(obj => {
+        console.log("cleared");
+    })
+    chrome.storage.local.get(items => {
+        console.log(items);
+    })
 })
 
 function delete_element(){
-  array_all_pass.forEach((pass , index)=>{
-      pass.addEventListener('click',e=>{
-          if(e.target.parentElement.classList.contains('delete')){
-              pass.remove();
-              console.log("hi");
-              delete_id = index;
-              delete_particular_element(index);
-          }
-      })
-  })
+    array_all_pass.forEach((pass , index)=>{
+        pass.addEventListener('click',e=>{
+            if(e.target.parentElement.classList.contains('delete')){
+                pass.remove();
+                console.log("hi");
+                delete_id = index;
+                delete_particular_element(index);
+            }
+        })
+    })
 }
 
 function delete_particular_element(index){
-  chrome.storage.local.get(function(items) {
-      if(items.data.length == 1)
-      {
-          items.data.pop();
-      }
-      else
-      {
-          items.data.splice(index,1);
-      }
-      chrome.storage.local.set(items ,function() {
-          console.log(items);
-      })
-  })
+    chrome.storage.local.get(function(items) {
+        if(items.data.length == 1)
+        {
+            items.data.pop();
+        }
+        else
+        {
+            items.data.splice(index,1);
+        }
+        chrome.storage.local.set(items ,function() {
+            console.log(items);
+        })
+    })
 }
-
-
 
 popbtn.addEventListener('click', e => {
     popup_wrap.style.display = 'block';
