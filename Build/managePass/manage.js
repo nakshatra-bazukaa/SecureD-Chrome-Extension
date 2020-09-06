@@ -18,19 +18,26 @@ btn_dark.addEventListener("click", ()=> {
       // ... then switch it to "dark-theme.css"
       theme.href = "darkmode.css";
       btn_dark.innerText = "Light mode";
+<<<<<<< HEAD
       localStorage.setItem("theme" , "dark");
+=======
+>>>>>>> aeed57b7d6bba90b43d5f839148322b527bc0b9c
     // Otherwise...
     } else {
       // ... switch it to "light-theme.css"
       theme.href = "style.css";
       btn_dark.innerText = "Dark mode";
+<<<<<<< HEAD
       localStorage.setItem("theme" , "light");
+=======
+>>>>>>> aeed57b7d6bba90b43d5f839148322b527bc0b9c
     }
   });
 
 
 let array_all_pass = Array.from(all_pass); 
 
+<<<<<<< HEAD
 let alldata = []
 
 window.onload = function () {
@@ -118,6 +125,9 @@ function delete_particular_element(index){
         })
     })
 }
+=======
+
+>>>>>>> aeed57b7d6bba90b43d5f839148322b527bc0b9c
 
 popbtn.addEventListener('click', e => {
     popup_wrap.style.display = 'block';

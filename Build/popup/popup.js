@@ -99,7 +99,6 @@ function myfunction1() {
   }
   else
     passGen.value = defaultPassword(24);
-
   if (hidden.classList.contains('d-none')) {
     hidden.classList.remove('d-none');
   }
