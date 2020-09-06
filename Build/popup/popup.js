@@ -50,56 +50,17 @@ generate.addEventListener('click', myfunction1);
 function myfunction1() {
 
   copy.innerHTML = "COPY TO CLIPBOARD";
+  // To generate password
   if (check.checked) {
-    let blockAlpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    let nonBlockAlpha = "abcdefghijklmnopqrstuvwxyz";
-    let specialChar = "!@#$%^&*_=+-/.?<>)(";
-    let numbers = "1234567890";
-    /*console.log(blockAlpha[4]);*/
-    let generatedPassword = "";
-    let allowedValues = "";
-    let st = 0;
-    let i = 0;
-    if (sessionStorage.getItem("xs") == "true") {
-      allowedValues += blockAlpha;
-      generatedPassword[st++] = blockAlpha.charAt(Math.floor(Math.random() * (blockAlpha.length)));
-      /*console.log(generatedPassword);*/
-    }
-    if (sessionStorage.getItem("ys") == "true") {
-      allowedValues += nonBlockAlpha;
-      generatedPassword[st++] = nonBlockAlpha.charAt(Math.floor(Math.random() * (nonBlockAlpha.length)));
-      /*console.log(generatedPassword);*/
-    }
-    if (sessionStorage.getItem("ts") == "true") {
-      allowedValues += specialChar;
-      generatedPassword[st++] = specialChar.charAt(Math.floor(Math.random() * (specialChar.length)));
-      /*console.log(generatedPassword);*/
-    }
-    if (sessionStorage.getItem("zs") == "true") {
-      allowedValues += numbers;
-      generatedPassword[st++] = numbers.charAt(Math.floor(Math.random() * (numbers.length)));
-      /*console.log(generatedPassword);*/
-    }
-    for (i = 0; i < slider.value; i++) {
-      generatedPassword = generatedPassword + allowedValues.charAt(Math.floor(Math.random() * (allowedValues.length)));
-    }
-    passGen.value = generatedPassword;
+    const hasBA = sessionStorage.getItem("xs") == "true";
+    const hasNBA = sessionStorage.getItem("ys") == "true";
+    const spCh = sessionStorage.getItem("ts") == "true";
+    const num = sessionStorage.getItem("zs") == "true";
+    const len = slider.value;
+    passGen.value = customPassword(hasBA, hasNBA, spCh, num, len);
   }
-
-
-  // random pass generator
-  else {
-    let values = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*_=+-/.?<>)(1234567890";
-    let generatedPassword = "";
-    let i = 0;
-    for (i = 0; i < 24; i++) {
-      generatedPassword = generatedPassword + values.charAt(Math.floor(Math.random() * (values.length - 1)));
-    }
-
-    passGen.value = generatedPassword;
-
-  }
-
+  else
+    passGen.value = defaultPassword(24);
   if (hidden.classList.contains('d-none')) {
     hidden.classList.remove('d-none');
   }
