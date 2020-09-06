@@ -81,6 +81,45 @@ function getPassword() {
   }
 }
 
+Delete_All.addEventListener('click',()=>{
+  details.innerHTML = '';
+  chrome.storage.local.clear(obj => {
+      console.log("cleared");
+  })
+  chrome.storage.local.get(items => {
+      console.log(items);
+  })
+})
+
+function delete_element(){
+  array_all_pass.forEach((pass , index)=>{
+      pass.addEventListener('click',e=>{
+          if(e.target.parentElement.classList.contains('delete')){
+              pass.remove();
+              console.log("hi");
+              delete_id = index;
+              delete_particular_element(index);
+          }
+      })
+  })
+}
+
+function delete_particular_element(index){
+  chrome.storage.local.get(function(items) {
+      if(items.data.length == 1)
+      {
+          items.data.pop();
+      }
+      else
+      {
+          items.data.splice(index,1);
+      }
+      chrome.storage.local.set(items ,function() {
+          console.log(items);
+      })
+  })
+}
+
 
 
 popbtn.addEventListener('click', e => {
