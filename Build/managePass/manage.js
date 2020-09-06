@@ -88,6 +88,7 @@ Delete_All.addEventListener('click',()=>{
     chrome.storage.local.get(items => {
         console.log(items);
     })
+    popup_wrap.style.display = 'none';
 })
 
 function delete_element(){
