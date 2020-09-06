@@ -6,28 +6,42 @@ const generate = document.querySelector("#generate");
 const hidden = document.querySelector(".hidden");
 const copy = document.querySelector("#copyit");
 const save_password = document.querySelector("#save");
+const showError = document.querySelector("#show_error");
+let allpassword = [];
+
+window.onload = function(){
+  theme_value = localStorage.getItem("theme");
+  if(theme_value == "null" || theme_value == "dark")
+  {
+    document.querySelector('#manage-cssstyle').href = "dark_mode.css";
+  }
+  else if(theme_value == "light")
+  {
+    document.querySelector('#manage-cssstyle').href = "style.css";
+  }
+}
 
 
 check.addEventListener('click', e => {
-    custom.classList.toggle('d-none');
-    if (custom.classList.contains('d-none')) {
-        form.reset();
-    }
-    if ((e.target.checked == false) && (hidden.classList.contains("d-none") == false)) {
-        hidden.classList.add("d-none");
-    } else if (e.target.checked == true && hidden.classList.contains("d-none") == false) {
-        hidden.classList.add("d-none");
-    }
+  custom.classList.toggle('d-none');
+  if (custom.classList.contains('d-none')) {
+    form.reset();
+  }
+  if((e.target.checked==false)&&(hidden.classList.contains("d-none")==false)){
+    hidden.classList.add("d-none");
+  }else if(e.target.checked==true&&hidden.classList.contains("d-none")==false){
+    hidden.classList.add("d-none");
+  }
 });
-
 
 const slider = document.getElementById("slider");
 const output = document.getElementById("demo");
 output.innerHTML = slider.value;
 
 slider.oninput = function () {
-    output.innerHTML = this.value;
+  output.innerHTML = this.value;
 }
+
 
 // custum password options
 
@@ -45,11 +59,35 @@ number.addEventListener('change', e => sessionStorage.setItem("zs", e.target.che
 
 special_char.addEventListener('change', e => sessionStorage.setItem("ts", e.target.checked));
 
-generate.addEventListener('click', myfunction1);
+
+generate.addEventListener('click', () => {
+  //check whether url or username are empty or not
+  if(($("#url").val() == "") || ($("#user").val() == ""))
+  {
+    hidden.classList.add('d-none');
+    showError.style.display = "inline";
+    showError.innerHTML = "Enter valid URL and Username";
+  }
+  //Error if no checkbox is selected in custom password but custom password is selected
+  else if((check.checked) && (!upper.checked) && (!lower.checked) && (!number.checked) && (!special_char.checked))
+  {
+    hidden.classList.add('d-none');
+    showError.style.display = "inline";
+    showError.innerHTML = "Check at least one checkbox";
+  }
+  else
+  {
+    showError.style.display = "none";
+    showError.innerHTML = "";
+    myfunction1();
+  }
+});
 
 function myfunction1() {
 
   copy.innerHTML = "COPY TO CLIPBOARD";
+  save_password.innerHTML = "SAVE PASSWORD";
+  
   // To generate password
   if (check.checked) {
     const hasBA = sessionStorage.getItem("xs") == "true";
@@ -61,6 +99,7 @@ function myfunction1() {
   }
   else
     passGen.value = defaultPassword(24);
+
   if (hidden.classList.contains('d-none')) {
     hidden.classList.remove('d-none');
   }
@@ -71,14 +110,14 @@ function myfunction1() {
 
 copy.addEventListener('click', () => {
 
-    /* Select the text field */
-    passGen.select();
-    passGen.setSelectionRange(0, 99999); /*For mobile devices*/
-  
-    /* Copy the text inside the text field */
-    document.execCommand("copy");
-    copy.innerHTML = "COPIED";
-  });
+  /* Select the text field */
+  passGen.select();
+  passGen.setSelectionRange(0, 99999); /*For mobile devices*/
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+  copy.innerHTML = "COPIED";
+});
 
 // ------------------------------------------------------
 
@@ -90,4 +129,34 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     $("#user").val(response.user);
   })
 })
-  
+
+// To save a password
+$("#save").click(() => {
+  save_password.innerHTML = "SAVED";
+  let pwd_details = {
+    url: $("#url").val(),
+    user: $("#user").val(),
+    title: $("#title").val(),
+    desc: $("#description").val(),
+    pass: $("#passGen").val()
+  };
+  chrome.runtime.sendMessage(
+    {
+      action: "save_pwd_details",
+      data: pwd_details
+    },
+    response => console.log(response));
+  chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+    chrome.tabs.sendMessage(tabs[0].id,
+      {
+        action: "set_user_data",
+        user: $("#user").val().trim(),
+        password: $("#passGen").val().trim()
+      });
+  })
+});
+
+// Manage passwords
+$("#manage").click(() => {
+  chrome.tabs.create({ url: "../managePass/index.html" });
+});

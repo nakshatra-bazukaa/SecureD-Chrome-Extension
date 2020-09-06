@@ -31,12 +31,9 @@ input {
     margin-left: 10px;
     margin-right: 10px;
 }
-
 .opt label{
     margin-left: 5px;
 }
-
-
 /* slider css */
 .range {
     width: 100%;
@@ -82,7 +79,9 @@ input {
       font-size: 1.2em;
       font-weight: bold;
   }
-/* form decoration */
+
+
+  /* form decoration */
   .form-control {
     border-radius: 10px;
     box-shadow: 5px 5px 5px #00000029;
