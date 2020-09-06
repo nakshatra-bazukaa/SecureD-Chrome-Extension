@@ -6,6 +6,8 @@ const generate = document.querySelector("#generate");
 const hidden = document.querySelector(".hidden");
 const copy = document.querySelector("#copyit");
 const save_password = document.querySelector("#save");
+const showError = document.querySelector("#show_error");
+let allpassword = [];
 
 
 check.addEventListener('click', e => {
