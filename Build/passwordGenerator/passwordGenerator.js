@@ -8,22 +8,27 @@ const customPassword = (hasBlockAlpha, hasNonBlockAlpha, hasSpecialChar, hasNumb
     let st = 0;
     if (hasBlockAlpha) {
         allowedValues += blockAlpha;
-        generatedPassword[st++] = blockAlpha.charAt(Math.floor(Math.random() * (blockAlpha.length)));
+        generatedPassword = blockAlpha.charAt(Math.floor(Math.random() * (blockAlpha.length)));
+	st++;
     }
     if (hasNonBlockAlpha) {
         allowedValues += nonBlockAlpha;
-        generatedPassword[st++] = nonBlockAlpha.charAt(Math.floor(Math.random() * (nonBlockAlpha.length)));
+        generatedPassword = nonBlockAlpha.charAt(Math.floor(Math.random() * (nonBlockAlpha.length)));
+	st++;
     }
     if (hasSpecialChar) {
         allowedValues += specialChar;
-        generatedPassword[st++] = specialChar.charAt(Math.floor(Math.random() * (specialChar.length)));
+        generatedPassword = specialChar.charAt(Math.floor(Math.random() * (specialChar.length)));
+	st++;
     }
     if (hasNumbers) {
         allowedValues += numbers;
-        generatedPassword[st++] = numbers.charAt(Math.floor(Math.random() * (numbers.length)));
+        generatedPassword = numbers.charAt(Math.floor(Math.random() * (numbers.length)));
+	st++;
     }
-    for (let i = st; i < pwdLength; i++)
+    for (let i = st; i < pwdLength; i++){
         generatedPassword += allowedValues.charAt(Math.floor(Math.random() * (allowedValues.length)));
+    }
 
     return generatedPassword;
 }
